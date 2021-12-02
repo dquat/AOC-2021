@@ -1,14 +1,14 @@
 use std::fs;
 
 pub fn aoc_day2() {
-    let lines =
+    let string =
         fs::read_to_string("src/aoc-day2-input")
-            .expect("Failed to read input file!")
-            .lines();
+            .expect("Failed to read input file!");
 
     // part 1
     let (mut horizontal, mut depth) = (0, 0);
-    lines
+    string
+        .lines()
         .for_each(|line| {
             let (lhs, number) = line.split_once(" ").unwrap();
             let number = number.parse::<i32>().unwrap();
@@ -23,7 +23,8 @@ pub fn aoc_day2() {
 
     // part 2
     let (mut horizontal, mut depth, mut aim) = (0, 0, 0);
-    lines
+    string
+        .lines()
         .for_each(|line| {
             let (lhs, number) = line.split_once(" ").unwrap();
             let number = number.parse::<i32>().unwrap();
