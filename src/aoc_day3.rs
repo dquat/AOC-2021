@@ -67,8 +67,7 @@ pub fn aoc_day3() {
             let (num_zeroes, num_ones) =
                 occurrences(remaining.iter());
             let (zero, one) = (num_zeroes[i], num_ones[i]);
-            let mut to_remove = Vec::with_capacity(remaining.len());
-            for (idx, &line) in remaining.iter().enumerate() {
+            remaining.retain(|&line| {
                 let byte =
                     line
                         .bytes()
@@ -76,26 +75,15 @@ pub fn aoc_day3() {
                         .unwrap();
                 if ty == 0
                     && (one > zero && byte == b'1'
-                        || one < zero && byte == b'0'
-                        || one == zero && byte == b'1')
+                    || one < zero && byte == b'0'
+                    || one == zero && byte == b'1')
                     || ty == 1
-                        && (one > zero && byte == b'0'
-                            || one < zero && byte == b'1'
-                            || one == zero && byte == b'0')
-                {
-                    to_remove.push(idx);
-                }
-            }
-            let mut new_vec =
-                Vec::with_capacity(
-                    remaining.len() - to_remove.len()
-                );
-            for (idx, &line) in remaining.iter().enumerate() {
-                if !to_remove.contains(&idx) {
-                    new_vec.push(line);
-                }
-            }
-            remaining = new_vec;
+                    && (one > zero && byte == b'0'
+                    || one < zero && byte == b'1'
+                    || one == zero && byte == b'0')
+                { false }
+                else { true }
+            });
         }
         result *= isize::from_str_radix(remaining[0], 2).unwrap();
     }
