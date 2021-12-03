@@ -1,5 +1,5 @@
+use std::fs;
 use std::slice::Iter;
-use std::{fs, slice};
 
 fn occurrences(string: Iter<&str>) -> ([i32; 12], [i32; 12]) {
     let (mut num_zeroes, mut num_ones) = (
@@ -8,20 +8,33 @@ fn occurrences(string: Iter<&str>) -> ([i32; 12], [i32; 12]) {
     );
 
     string.for_each(|line| {
-        line.bytes().enumerate().for_each(|(i, b)| match b {
-            b'0' => num_zeroes[i] += 1,
-            b'1' => num_ones[i] += 1,
-            _ => unreachable!(),
-        });
+        line
+            .bytes()
+            .enumerate()
+            .for_each(|(i, b)|
+                match b {
+                    b'0' => num_zeroes[i] += 1,
+                    b'1' => num_ones[i] += 1,
+                    _ => unreachable!(),
+                }
+            );
     });
     (num_zeroes, num_ones)
 }
 
 pub fn aoc_day3() {
-    let string = fs::read_to_string("src/aoc-day3-input").expect("Failed to read input file!");
+    let string =
+        fs::read_to_string("src/aoc-day3-input")
+            .expect("Failed to read input file!");
 
     // part 1
-    let (mut num_zeroes, mut num_ones) = occurrences(string.lines().collect::<Vec<_>>().iter());
+    let (num_zeroes, num_ones) =
+        occurrences(
+            string
+                .lines()
+                .collect::<Vec<_>>()
+                .iter()
+        );
 
     let (mut gamma_rate, mut epsilon_rate) = (String::with_capacity(12), String::with_capacity(12));
     for i in 0..12 {
@@ -36,23 +49,31 @@ pub fn aoc_day3() {
     }
     println!(
         "Result of challenge 1 is: {}",
-        isize::from_str_radix(&*gamma_rate, 2).unwrap()
+            isize::from_str_radix(&*gamma_rate, 2).unwrap()
             * isize::from_str_radix(&*epsilon_rate, 2).unwrap()
     );
 
     // part 2
     let mut result = 1;
     for ty in 0..2 {
-        let mut remaining: Vec<&str> = string.lines().collect();
+        let mut remaining: Vec<&str> =
+            string
+                .lines()
+                .collect();
         for i in 0..12 {
             if remaining.len() == 1 {
                 break;
             }
-            let (mut num_zeroes, mut num_ones) = occurrences(remaining.iter());
+            let (num_zeroes, num_ones) =
+                occurrences(remaining.iter());
             let (zero, one) = (num_zeroes[i], num_ones[i]);
             let mut to_remove = Vec::with_capacity(remaining.len());
             for (idx, &line) in remaining.iter().enumerate() {
-                let byte = line.bytes().nth(i).unwrap();
+                let byte =
+                    line
+                        .bytes()
+                        .nth(i)
+                        .unwrap();
                 if ty == 0
                     && (one > zero && byte == b'1'
                         || one < zero && byte == b'0'
@@ -65,7 +86,10 @@ pub fn aoc_day3() {
                     to_remove.push(idx);
                 }
             }
-            let mut new_vec = Vec::with_capacity(remaining.len() - to_remove.len());
+            let mut new_vec =
+                Vec::with_capacity(
+                    remaining.len() - to_remove.len()
+                );
             for (idx, &line) in remaining.iter().enumerate() {
                 if !to_remove.contains(&idx) {
                     new_vec.push(line);
