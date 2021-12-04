@@ -1,7 +1,7 @@
 use std::fs;
 use std::slice::Iter;
 
-fn occurrences(string: Iter<&str>) -> ([i32; 12], [i32; 12]) {
+fn occurrences(string: Iter<&str>, start: usize) -> ([i32; 12], [i32; 12]) {
     let (mut num_zeroes, mut num_ones) = (
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -10,11 +10,12 @@ fn occurrences(string: Iter<&str>) -> ([i32; 12], [i32; 12]) {
     string.for_each(|line| {
         line
             .bytes()
+            .skip(start)
             .enumerate()
             .for_each(|(i, b)|
                 match b {
-                    b'0' => num_zeroes[i] += 1,
-                    b'1' => num_ones[i] += 1,
+                    b'0' => num_zeroes[i + start] += 1,
+                    b'1' => num_ones[i + start] += 1,
                     _ => unreachable!(),
                 }
             );
@@ -33,7 +34,8 @@ pub fn aoc_day3() {
             string
                 .lines()
                 .collect::<Vec<_>>()
-                .iter()
+                .iter(),
+            0,
         );
 
     let (mut gamma_rate, mut epsilon_rate) = (String::with_capacity(12), String::with_capacity(12));
@@ -53,6 +55,7 @@ pub fn aoc_day3() {
             * isize::from_str_radix(&*epsilon_rate, 2).unwrap()
     );
 
+    let time = std::time::Instant::now();
     // part 2
     let mut result = 1;
     for ty in 0..2 {
@@ -65,7 +68,7 @@ pub fn aoc_day3() {
                 break;
             }
             let (num_zeroes, num_ones) =
-                occurrences(remaining.iter());
+                occurrences(remaining.iter(), i);
             let (zero, one) = (num_zeroes[i], num_ones[i]);
             remaining.retain(|&line| {
                 let byte =
@@ -87,5 +90,5 @@ pub fn aoc_day3() {
         }
         result *= isize::from_str_radix(remaining[0], 2).unwrap();
     }
-    println!("Result of challenge 2 is: {}", result);
+    println!("Result of challenge 2 is: {}, {:?}", result, time.elapsed());
 }
