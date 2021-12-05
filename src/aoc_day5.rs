@@ -1,19 +1,26 @@
 use std::collections::{HashMap, HashSet};
 use std::fs;
 
-fn parse_input(string: &String, allow_diag: bool) -> Vec<((isize, isize), (isize, isize))> {
-    let mut lines = Vec::with_capacity(string.lines().count());
+fn parse_input(string: &String, allow_diag: bool) -> [((isize, isize), (isize, isize)); 500] {
+    let mut lines = [((0, 0), (0, 0)); 500];
     // parse all points
     string
         .lines()
-        .for_each(|line| {
+        .enumerate()
+        .for_each(|(i, line)| {
             let (start, end) =
                 line
                     .split_once("->")
                     .unwrap();
             let ((sx, sy), (ex, ey)) = (
-                start.trim().split_once(",").unwrap(),
-                end.trim().split_once(",").unwrap()
+                start
+                    .trim()
+                    .split_once(",")
+                    .unwrap(),
+                end
+                    .trim()
+                    .split_once(",")
+                    .unwrap(),
             );
             if allow_diag || (sx == ex || sy == ey) {
                 let (sx, sy, ex, ey) = (
@@ -23,13 +30,20 @@ fn parse_input(string: &String, allow_diag: bool) -> Vec<((isize, isize), (isize
                     ex.parse::<isize>().unwrap(),
                     ey.parse::<isize>().unwrap()
                 );
-                lines.push(((sx, sy), (ex, ey)));
+                lines[i] = ((sx, sy), (ex, ey));
             }
         });
     lines
 }
 
-fn get_line_points(((sx, sy), (ex, ey)): ((isize, isize), (isize, isize))) -> Vec<(isize, isize)> {
+fn get_line_points((
+        (sx, sy),
+        (ex, ey)
+    ): (
+        (isize, isize),
+        (isize, isize)
+    )
+) -> Vec<(isize, isize)> {
     // a vector of the slope
     let vec = (
         (ex - sx),
@@ -59,9 +73,9 @@ fn get_line_points(((sx, sy), (ex, ey)): ((isize, isize), (isize, isize))) -> Ve
     points
 }
 
-fn calculate_intersections(lines: Vec<((isize, isize), (isize, isize))>) -> usize {
+fn calculate_intersections(lines: &[((isize, isize), (isize, isize))]) -> usize {
     let mut point_count: HashMap<(isize, isize), usize> = HashMap::with_capacity(lines.len());
-    for line in lines {
+    for &line in lines {
         // generate points for each line
         get_line_points(line)
             .iter()
@@ -84,11 +98,13 @@ pub fn aoc_day5() {
     let string =
         fs::read_to_string("src/aoc-day5-input")
             .expect("Failed to read input file!");
+    let time = std::time::Instant::now();
     // part 1
     let lines = parse_input(&string, false);
-    println!("Result of challenge 1: {}", calculate_intersections(lines));
+    println!("Result of challenge 1: {}", calculate_intersections(&lines));
 
     // part 2
     let lines = parse_input(&string, true);
-    println!("Result of challenge 2: {}", calculate_intersections(lines));
+    println!("Result of challenge 2: {}", calculate_intersections(&lines));
+    println!("Time: {:?}", time.elapsed());
 }
