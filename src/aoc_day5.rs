@@ -37,7 +37,7 @@ fn get_line_points(((sx, sy), (ex, ey)): ((isize, isize), (isize, isize))) -> Ve
 	);
 	let mut points = vec![(sx, sy)];
 	// calculate the normal of the vector
-	// vec / vec_len = vec normal
+	// vec / vec_len = vec normal (we need this because the slope factor needs to be in unit-length)
 	let vec_len = ((
 		vec.0.pow(2) + vec.1.pow(2)
 	) as f64).sqrt();
