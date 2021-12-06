@@ -3,6 +3,7 @@ mod aoc_day2;
 mod aoc_day3;
 mod aoc_day4;
 mod aoc_day5;
+mod aoc_day6;
 
 fn main() {
     // day 1
@@ -19,4 +20,7 @@ fn main() {
 
     // day 5
     aoc_day5::aoc_day5();
+
+    // day 6
+    aoc_day6::aoc_day6();
 }
