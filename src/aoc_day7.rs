@@ -1,7 +1,4 @@
 use std::fs;
-use std::ops::Sub;
-
-const SAMPLE_INPUT: &str = "16,1,2,0,4,2,7,1,2,14";
 
 fn get_fuel(positions: &Vec<usize>, constant: bool) -> usize {
     let &max = positions.iter().max().unwrap();
@@ -26,7 +23,7 @@ fn get_fuel(positions: &Vec<usize>, constant: bool) -> usize {
 }
 
 pub fn aoc_day7() {
-    let string = //SAMPLE_INPUT.to_string();
+    let string =
         std::fs::read_to_string("src/aoc-day7-input")
             .expect("Failed to read input file!");
     let positions =
