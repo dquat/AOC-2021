@@ -10,11 +10,10 @@ fn sort_string(input: &str) -> String {
             |&a, b|
                 a.cmp(b)
         );
+
     let sorted =
-        sorted
-            .iter()
-            .map(|&b| b as char)
-            .collect::<String>();
+        String::from_utf8(sorted)
+            .unwrap();
     sorted
 }
 
