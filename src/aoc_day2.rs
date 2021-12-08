@@ -1,6 +1,6 @@
 use std::fs;
 
-pub fn aoc_day2() {
+pub fn solve() {
     let string = fs::read_to_string("src/aoc-day2-input").expect("Failed to read input file!");
 
     // part 1

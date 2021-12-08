@@ -1,4 +1,4 @@
-use std::collections::{HashMap, HashSet};
+use std::collections::{HashMap};
 use std::fs;
 
 fn parse_input(string: &String, allow_diag: bool) -> [((isize, isize), (isize, isize)); 500] {
@@ -82,7 +82,7 @@ fn calculate_intersections(lines: &[((isize, isize), (isize, isize))]) -> usize 
             .for_each(|&point| {
                 // if point is seen, add a point to the point count
                 if point_count.contains_key(&point) {
-                    let mut point = point_count.get_mut(&point).unwrap();
+                    let point = point_count.get_mut(&point).unwrap();
                     *point += 1;
                 } else {
                     // if not, create the point
@@ -94,7 +94,7 @@ fn calculate_intersections(lines: &[((isize, isize), (isize, isize))]) -> usize 
     point_count.values().filter(|&&x| x >= 2).count()
 }
 
-pub fn aoc_day5() {
+pub fn solve() {
     let string =
         fs::read_to_string("src/aoc-day5-input")
             .expect("Failed to read input file!");

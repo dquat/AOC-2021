@@ -22,9 +22,9 @@ fn get_fuel(positions: &Vec<usize>, constant: bool) -> usize {
     min_fuel
 }
 
-pub fn aoc_day7() {
+pub fn solve() {
     let string =
-        std::fs::read_to_string("src/aoc-day7-input")
+        fs::read_to_string("src/aoc-day7-input")
             .expect("Failed to read input file!");
     let positions =
         string

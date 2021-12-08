@@ -26,11 +26,6 @@ impl Board {
         self.data[board][board_item] = data;
     }
 
-    #[inline]
-    fn get(&self, board: usize, x: usize, y: usize) -> (u32, bool) {
-        (self.data[board][y * 5 + x], self.marked[board][y * 5 + x])
-    }
-
     fn check_win_array(&self, board: usize, array: [usize; 5]) -> bool {
         let mut win = false;
         let mut win_locations = [false; 5];
@@ -103,7 +98,6 @@ impl Board {
     fn next_win(&mut self) -> Option<(usize, u32)> {
         if self.done == 100 { return None; }
         let mut winning = None;
-        let mut last_call = 0;
         for i in self.last..100 {
             if winning.is_some() { break; }
             let drawn = &self.draws[..(i + 1)];
@@ -123,8 +117,7 @@ impl Board {
                     self.won[j] = true;
                     self.done += 1;
                     self.last = i;
-                    last_call = self.draws[i];
-                    winning = Some((j, last_call));
+                    winning = Some((j,  self.draws[i]));
                     break;
                 };
             }
@@ -143,7 +136,7 @@ impl Board {
     }
 }
 
-pub fn aoc_day4() {
+pub fn solve() {
     let string =
         fs::read_to_string("src/aoc-day4-input")
             .expect("Failed to read input file!");
