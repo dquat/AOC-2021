@@ -88,7 +88,9 @@ pub fn solve() {
                     .collect::<Vec<&str>>();
 
             let mut numbers = [""; 10];
-            inp.iter().for_each(|&x| {
+            inp
+                .iter()
+                .for_each(|&x| {
                 match x.len() {
                     2 => numbers[1] = x,
                     3 => numbers[7] = x,
