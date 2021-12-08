@@ -19,8 +19,8 @@ fn sort_string(input: &str) -> String {
 
 fn contains_all(input: &str, test: &str) -> bool {
     let mut num = 0;
-    for c in test.chars() {
-        num += input.contains(c) as usize;
+    for c in test.bytes() {
+        num += input.contains(c as char) as usize;
     }
     num == input.len()
 }
