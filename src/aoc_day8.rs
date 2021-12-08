@@ -124,11 +124,6 @@ pub fn solve() {
                     && x != numbers[9]
                     && x != numbers[0]
             );
-            numbers[6] = get_containing_input(inp,
-                |&&x| x.len() == 6
-                    && x != numbers[9]
-                    && x != numbers[0]
-            );
             numbers[2] = get_containing_input(inp,
                 |&&x| x.len() == 5
                     && x != numbers[5]
