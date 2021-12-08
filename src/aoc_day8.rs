@@ -3,8 +3,8 @@ use std::fs;
 fn sort_string(input: &str) -> String {
     let mut sorted =
         input
-            .chars()
-            .collect::<Vec<char>>();
+            .bytes()
+            .collect::<Vec<u8>>();
     sorted
         .sort_by(
             |&a, b|
@@ -13,6 +13,7 @@ fn sort_string(input: &str) -> String {
     let sorted =
         sorted
             .iter()
+            .map(|&b| b as char)
             .collect::<String>();
     sorted
 }
