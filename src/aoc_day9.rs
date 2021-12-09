@@ -39,12 +39,11 @@ pub fn get_lowest(points: &Vec<u8>) -> Vec<u8> {
 }
 
 pub fn get_not_9(
-    start: Vec<(u8, usize, usize)>,
+    mut surrounding: Vec<(u8, usize, usize)>,
     points: &Vec<u8>,
     x: usize,
     y: usize
 ) -> Vec<(u8, usize, usize)> {
-    let mut surrounding = start;
     for (s, x, y) in get_surrounding(points, x, y) {
         if s < 9u8 && !surrounding.contains(&(s, x, y)) {
             surrounding.push((s, x, y));
