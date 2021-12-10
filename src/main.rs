@@ -33,9 +33,12 @@ macro_rules! solve_days {
     ($($day: ident,)*) => {{
         $(let day = stringify!($day).replace("aoc_day", "");
         println!("\x1b[38;5;3mDay {}: \x1b[0m", day);
+               // ^^^^^^^^^^^^        ^^^^^^^ reset color
+               // yellow color
         let time = std::time::Instant::now();
         $day::solve();
         println!("\x1b[38;5;3mCompleted day {} in {:?}\n\x1b[0m", day, time.elapsed());)*
+               // ^^^^^^^^^^^^ yellow color             ^^^^^^^ reset color
     }}
 }
 
