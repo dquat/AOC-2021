@@ -12,41 +12,44 @@ mod aoc_day6;
 mod aoc_day7;
 mod aoc_day8;
 mod aoc_day9;
+mod aoc_day10;
+mod aoc_day11;
+mod aoc_day12;
+mod aoc_day13;
+mod aoc_day14;
+mod aoc_day15;
+mod aoc_day16;
+mod aoc_day17;
+mod aoc_day18;
+mod aoc_day19;
+mod aoc_day20;
+mod aoc_day21;
+mod aoc_day22;
+mod aoc_day23;
+mod aoc_day24;
+mod aoc_day25;
+
+macro_rules! solve_days {
+    ($($day: ident,)*) => {{
+        $(let day = stringify!($day).replace("aoc_day", "");
+        println!("\x1b[38;5;3mDay {}: \x1b[0m", day);
+        let time = std::time::Instant::now();
+        $day::solve();
+        println!("\x1b[38;5;3mCompleted day {} in {:?}\n\x1b[0m", day, time.elapsed());)*
+    }}
+}
 
 fn main() {
-    // day 1
-    println!("Day 1: ");
-    aoc_day1::solve();
-
-    // day 2
-    println!("Day 2: ");
-    aoc_day2::solve();
-
-    // day 3
-    println!("Day 3: ");
-    aoc_day3::solve();
-
-    // day 4
-    println!("Day 4: ");
-    aoc_day4::solve();
-
-    // day 5
-    println!("Day 5: ");
-    aoc_day5::solve();
-
-    // day 6
-    println!("Day 6: ");
-    aoc_day6::solve();
-
-    // day 7
-    println!("Day 7: ");
-    aoc_day7::solve();
-
-    // day 8
-    println!("Day 8: ");
-    aoc_day8::solve();
-
-    // day 9
-    println!("Day 9: ");
-    aoc_day9::solve();
+    solve_days!(
+        aoc_day10,
+         aoc_day9,
+         aoc_day8,
+         aoc_day7,
+         aoc_day6,
+         aoc_day5,
+         aoc_day4,
+         aoc_day3,
+         aoc_day2,
+         aoc_day1,
+    );
 }

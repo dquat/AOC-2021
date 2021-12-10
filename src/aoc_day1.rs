@@ -1,7 +1,9 @@
 use std::fs;
 
 pub fn solve() {
-    let string = fs::read_to_string("src/aoc-day1-input").expect("Failed to read input file!");
+    let string =
+        fs::read_to_string("src/inputs/aoc-day1-input")
+            .expect("Failed to read input file!");
     // get file contents as a vector of u-ints
     let measurements = string
         .lines()

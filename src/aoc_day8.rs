@@ -36,7 +36,7 @@ where F: FnMut(&&&str) -> bool {
 
 pub fn solve() {
     let string =
-        fs::read_to_string("src/aoc-day8-input")
+        fs::read_to_string("src/inputs/aoc-day8-input")
             .expect("Failed to read input file!");
     let mut outputs: Vec<&str>      = Vec::new();
     let mut inputs : Vec<Vec<&str>> = Vec::new();

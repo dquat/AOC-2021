@@ -27,7 +27,7 @@ fn count_fishes(input: &String, days: usize) -> usize {
 
 pub fn solve() {
     let string =
-        fs::read_to_string("src/aoc-day6-input")
+        fs::read_to_string("src/inputs/aoc-day6-input")
             .expect("Failed to read input file!");
     // part 1
     println!("Result for challenge 1: {}", count_fishes(&string, 80));

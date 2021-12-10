@@ -96,7 +96,7 @@ fn calculate_intersections(lines: &[((isize, isize), (isize, isize))]) -> usize 
 
 pub fn solve() {
     let string =
-        fs::read_to_string("src/aoc-day5-input")
+        fs::read_to_string("src/inputs/aoc-day5-input")
             .expect("Failed to read input file!");
     let time = std::time::Instant::now();
     // part 1

@@ -24,7 +24,7 @@ fn get_fuel(positions: &Vec<usize>, constant: bool) -> usize {
 
 pub fn solve() {
     let string =
-        fs::read_to_string("src/aoc-day7-input")
+        fs::read_to_string("src/inputs/aoc-day7-input")
             .expect("Failed to read input file!");
     let positions =
         string

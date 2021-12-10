@@ -138,7 +138,7 @@ impl Board {
 
 pub fn solve() {
     let string =
-        fs::read_to_string("src/aoc-day4-input")
+        fs::read_to_string("src/inputs/aoc-day4-input")
             .expect("Failed to read input file!");
     let time = std::time::Instant::now();
     let mut boards = Board::generate_board(string);

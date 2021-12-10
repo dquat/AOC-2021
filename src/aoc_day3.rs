@@ -25,7 +25,7 @@ fn occurrences(string: Iter<&str>, start: usize) -> ([i32; 12], [i32; 12]) {
 
 pub fn solve() {
     let string =
-        fs::read_to_string("src/aoc-day3-input")
+        fs::read_to_string("src/inputs/aoc-day3-input")
             .expect("Failed to read input file!");
 
     // part 1

@@ -67,7 +67,7 @@ pub fn get_basins(points: &Vec<u8>) -> Vec<Vec<(u8, usize, usize)>> {
 
 pub fn solve() {
     let string =
-        fs::read_to_string("src/aoc-day9-input")
+        fs::read_to_string("src/inputs/aoc-day9-input")
             .expect("Failed to read input file!");
 
     // parse

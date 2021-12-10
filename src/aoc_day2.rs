@@ -1,7 +1,9 @@
 use std::fs;
 
 pub fn solve() {
-    let string = fs::read_to_string("src/aoc-day2-input").expect("Failed to read input file!");
+    let string =
+        fs::read_to_string("src/inputs/aoc-day2-input")
+            .expect("Failed to read input file!");
 
     // part 1
     let (mut horizontal, mut depth) = (0, 0);
