@@ -26,7 +26,7 @@ fn get_incomplete(line: &str) -> usize {
     let mut score = 0;
     remaining
         .iter()
-        .rev() // important lol, I got stuck on this one
+        .rev() // important lol, I got stuck on this one (not for long!)
         .for_each(|&x| match x {
             ')' => score = (5 * score) + 1,
             ']' => score = (5 * score) + 2,
