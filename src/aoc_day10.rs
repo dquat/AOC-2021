@@ -42,13 +42,9 @@ pub fn solve() {
         fs::read_to_string("src/inputs/aoc-day10-input")
             .expect("Failed to read input file!");
 
-    let lines =
-        string
-            .lines()
-            .collect::<Vec<&str>>();
-
-    let score = lines
-        .iter()
+    let score =
+    string
+        .lines()
         .fold(
             0,
             |acc, line|
@@ -56,15 +52,15 @@ pub fn solve() {
         );
     println!("Result of challenge 1: {}", score);
 
-    let mut scores = Vec::with_capacity(lines.len());
-    lines
-        .iter()
+    let mut scores = Vec::with_capacity(string.lines().count());
+    string
+        .lines()
         .filter(
-            |&&line|
+            |&line|
                 get_score(line).0 == 0
         )
         .for_each(
-            |&line|
+            |line|
                 scores.push(
                     get_incomplete(line)
                 )
