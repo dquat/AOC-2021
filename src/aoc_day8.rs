@@ -11,10 +11,8 @@ fn sort_string(input: &str) -> String {
                 a.cmp(b)
         );
 
-    let sorted =
-        String::from_utf8(sorted)
-            .unwrap();
-    sorted
+    String::from_utf8(sorted)
+        .unwrap()
 }
 
 fn contains_all(input: &str, test: &str) -> bool {
@@ -29,8 +27,7 @@ fn get_containing_input<'a, F>(input: &'a Vec<&str>, x: F) -> &'a str
 where F: FnMut(&&&str) -> bool {
     input
         .iter()
-        .filter(x)
-        .next()
+        .find(x)
         .unwrap()
 }
 
@@ -45,19 +42,19 @@ pub fn solve() {
         .for_each(|line| {
             let mut split =
                 line
-                    .split("|");
+                    .split('|');
             let input =
                 split
                     .next()
                     .unwrap()
                     .trim()
-                    .split(" ");
+                    .split(' ');
             let output =
                 split
                     .next()
                     .unwrap()
                     .trim().
-                    split(" ");
+                    split(' ');
             inputs.push(input.collect::<Vec<&str>>());
             outputs.extend(output.collect::<Vec<&str>>().iter());
         });
@@ -84,7 +81,7 @@ pub fn solve() {
             let out =
                 outputs[i * 4..(i * 4) + 4]
                     .iter()
-                    .map(|&s| s)
+                    .copied()
                     .collect::<Vec<&str>>();
 
             let mut numbers = [""; 10];

@@ -28,7 +28,7 @@ pub fn solve() {
             .expect("Failed to read input file!");
     let positions =
         string
-            .split(",")
+            .split(',')
             .map(str::parse::<usize>)
             .collect::<Result<Vec<_>, _>>()
             .unwrap();

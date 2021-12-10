@@ -71,21 +71,19 @@ pub fn solve() {
                 occurrences(remaining.iter(), i);
             let (zero, one) = (num_zeroes[i], num_ones[i]);
             remaining.retain(|&line| {
-                let byte =
+                let &byte =
                     line
-                        .bytes()
-                        .nth(i)
+                        .as_bytes()
+                        .get(i)
                         .unwrap();
-                if ty == 0
+                !(ty == 0
                     && (one > zero && byte == b'1'
                     || one < zero && byte == b'0'
                     || one == zero && byte == b'1')
                     || ty == 1
                     && (one > zero && byte == b'0'
                     || one < zero && byte == b'1'
-                    || one == zero && byte == b'0')
-                { false }
-                else { true }
+                    || one == zero && byte == b'0'))
             });
         }
         result *= isize::from_str_radix(remaining[0], 2).unwrap();

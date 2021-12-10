@@ -57,8 +57,8 @@ pub fn get_basins(points: &Vec<u8>) -> Vec<Vec<(u8, usize, usize)>> {
     let mut surrounded = Vec::new();
     for x in 0..POINT_LEN {
         for y in 0..POINT_LINES {
-            if check_lowest(&points, x, y) {
-                surrounded.push(get_not_9(vec![(points[x + y * POINT_LEN], x, y)], &points, x, y));
+            if check_lowest(points, x, y) {
+                surrounded.push(get_not_9(vec![(points[x + y * POINT_LEN], x, y)], points, x, y));
             }
         }
     }

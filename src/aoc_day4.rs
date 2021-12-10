@@ -57,7 +57,7 @@ impl Board {
             }
             if win { break; }
         }
-        return win;
+        win
     }
 
     fn generate_board(string: String) -> Board {
@@ -67,7 +67,7 @@ impl Board {
         lines
             .next()
             .unwrap()
-            .split(",")
+            .split(',')
             .enumerate()
             .for_each(
                 |(i, x)|
@@ -78,14 +78,14 @@ impl Board {
         boards.draws = draws;
         lines.next();
         let (mut index, mut board_index) = (0, 0);
-        while let Some(line) = lines.next() {
+        for line in lines {
             if line.is_empty() {
                 index = 0;
                 board_index += 1;
                 continue;
             }
             let mut numbers = line.split_ascii_whitespace();
-            while let Some(x) = numbers.next() {
+            for x in numbers {
                 let x = str::parse::<u32>(x).unwrap();
                 boards.set_data(board_index, index, x);
                 index += 1;

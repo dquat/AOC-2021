@@ -4,7 +4,7 @@ fn count_fishes(input: &String, days: usize) -> usize {
     let mut fish_count = [0usize; 9];
     let mut tmp_count = [0; 9];
     input
-        .split(",")
+        .split(',')
         .for_each(|x| {
             let i = x.parse::<usize>().unwrap();
             fish_count[i] += 1;
