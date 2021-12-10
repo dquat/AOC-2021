@@ -1,3 +1,4 @@
+// Why do these annoying warnings have to be on by default?
 #![allow(dead_code)]
 #![allow(unused_variables)]
 #![allow(unused_imports)]
@@ -45,14 +46,14 @@ macro_rules! solve_days {
 fn main() {
     solve_days!(
         aoc_day10,
-         aoc_day9,
-         aoc_day8,
-         aoc_day7,
-         aoc_day6,
-         aoc_day5,
-         aoc_day4,
-         aoc_day3,
-         aoc_day2,
-         aoc_day1,
+         // aoc_day9,
+         // aoc_day8,
+         // aoc_day7,
+         // aoc_day6,
+         // aoc_day5,
+         // aoc_day4,
+         // aoc_day3,
+         // aoc_day2,
+         // aoc_day1,
     );
 }
