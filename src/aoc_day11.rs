@@ -11,27 +11,27 @@ struct Point {
 
 impl Point {
     #[inline]
-    fn new(x: usize, y: usize) -> Point { Point { x, y }                               }
+    fn new(x: usize, y: usize) -> Point { Point { x, y } }
     #[inline]
-    fn index(&self)            -> usize { self.y * WIDTH + self.x                      }
+    fn index(&self)            -> usize { self.y * WIDTH + self.x }
     #[inline]
     fn from(index: usize)      -> Point { Point { x: index % WIDTH, y: index / WIDTH } }
     #[inline]
-    fn left(&self)             -> Point { Point::new(self.x - 1, self.y)            }
+    fn left(&self)             -> Point { Point::new(self.x - 1, self.y) }
     #[inline]
-    fn left_down(&self)        -> Point { Point::new(self.x - 1, self.y + 1)     }
+    fn left_down(&self)        -> Point { Point::new(self.x - 1, self.y + 1) }
     #[inline]
-    fn left_up(&self)          -> Point { Point::new(self.x - 1, self.y - 1)     }
+    fn left_up(&self)          -> Point { Point::new(self.x - 1, self.y - 1) }
     #[inline]
-    fn right(&self)            -> Point { Point::new(self.x + 1, self.y)            }
+    fn right(&self)            -> Point { Point::new(self.x + 1, self.y) }
     #[inline]
-    fn right_down(&self)       -> Point { Point::new(self.x + 1, self.y + 1)     }
+    fn right_down(&self)       -> Point { Point::new(self.x + 1, self.y + 1) }
     #[inline]
-    fn right_up(&self)         -> Point { Point::new(self.x + 1, self.y - 1)     }
+    fn right_up(&self)         -> Point { Point::new(self.x + 1, self.y - 1) }
     #[inline]
-    fn up(&self)               -> Point { Point::new(self.x, self.y - 1)            }
+    fn up(&self)               -> Point { Point::new(self.x, self.y - 1) }
     #[inline]
-    fn down(&self)             -> Point { Point::new(self.x, self.y + 1)            }
+    fn down(&self)             -> Point { Point::new(self.x, self.y + 1) }
 }
 
 #[derive(Debug, Clone, Copy)]
