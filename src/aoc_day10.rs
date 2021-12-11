@@ -10,12 +10,12 @@ fn get_score(line: &str) -> (usize, Vec<char>) {
             b'{' => check.push('}'),
             b'<' => check.push('>'),
 
-            b')' => if check.pop() != Some(')') { score += 3; },
-            b']' => if check.pop() != Some(']') { score += 57; },
-            b'}' => if check.pop() != Some('}') { score += 1197; },
+            b')' => if check.pop() != Some(')') { score +=     3; },
+            b']' => if check.pop() != Some(']') { score +=    57; },
+            b'}' => if check.pop() != Some('}') { score +=  1197; },
             b'>' => if check.pop() != Some('>') { score += 25137; },
 
-            _ => unreachable!()
+            _ => unreachable!(),
         }
     }
     (score, check)

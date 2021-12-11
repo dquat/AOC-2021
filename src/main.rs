@@ -45,7 +45,8 @@ macro_rules! solve_days {
 
 fn main() {
     solve_days!(
-        aoc_day10,
+        aoc_day11,
+        // aoc_day10,
          // aoc_day9,
          // aoc_day8,
          // aoc_day7,
