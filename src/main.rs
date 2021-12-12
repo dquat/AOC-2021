@@ -4,15 +4,17 @@
 #![allow(unused_imports)]
 #![allow(unused_mut)]
 
-mod aoc_day1;
-mod aoc_day2;
-mod aoc_day3;
-mod aoc_day4;
-mod aoc_day5;
-mod aoc_day6;
-mod aoc_day7;
-mod aoc_day8;
-mod aoc_day9;
+extern crate crossterm; // just for my tinkering, it has not been used until now
+
+mod  aoc_day1;
+mod  aoc_day2;
+mod  aoc_day3;
+mod  aoc_day4;
+mod  aoc_day5;
+mod  aoc_day6;
+mod  aoc_day7;
+mod  aoc_day8;
+mod  aoc_day9;
 mod aoc_day10;
 mod aoc_day11;
 mod aoc_day12;
@@ -45,7 +47,8 @@ macro_rules! solve_days {
 
 fn main() {
     solve_days!(
-        aoc_day11,
+        aoc_day12,
+        // aoc_day11,
         // aoc_day10,
          // aoc_day9,
          // aoc_day8,
