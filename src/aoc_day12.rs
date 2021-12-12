@@ -1,42 +1,50 @@
 use std::collections::HashMap;
 use std::fs;
 
-fn gen_tree<'a>(
-    hm         : &HashMap<&'a str, Vec<&'a str>>,
-    node       : &'a str,
-    mut seen   : Vec<&'a str>,
-    mut twice  : bool,
-    filter     : bool,
-) -> usize {
-    if seen.contains(&node) {
-        if !twice {
-            return 0;
-        } else {
-            twice = false;
-        }
+struct Tree<'a> {
+    seen : Vec<&'a str>,
+    hm   : &'a HashMap<&'a str, Vec<&'a str>>,
+}
+
+impl<'a> Tree<'a> {
+    fn new(hm : &'a HashMap<&'a str, Vec<&'a str>>) -> Tree<'a> {
+        Tree { seen : Vec::new(), hm }
     }
-    if node == "end" { return 1; }
-    if node == node.to_ascii_lowercase() { seen.push(node); }
-    hm[node]
-        .iter()
-        .filter(
-            |&&x|
-                if filter {
-                    x != "start"
-                } else {
-                    true
-                })
-        .map(
-            |&n|
-                gen_tree(
-                    hm,
-                    n,
-                    seen.clone(),
-                    twice,
-                    filter
-                )
-        )
-        .sum()
+
+    fn gen_tree(
+        &mut self,
+        node       : &'a str,
+        mut twice  : bool,
+        filter     : bool,
+    ) -> usize {
+        if self.seen.contains(&node) {
+            if !twice {
+                return 0;
+            } else {
+                twice = false;
+            }
+        }
+        if node == "end" { return 1; }
+        if node == node.to_ascii_lowercase() { self.seen.push(node); }
+        self.hm[node]
+            .iter()
+            .filter(
+                |&&x|
+                    if filter {
+                        x != "start"
+                    } else {
+                        true
+                    })
+            .map(
+                |&n|
+                    self.gen_tree(
+                        n,
+                        twice,
+                        filter
+                    )
+            )
+            .sum()
+    }
 }
 
 pub fn solve() {
@@ -59,23 +67,13 @@ pub fn solve() {
                 .push(split.0);
         });
     // part 1
+    let mut tree = Tree::new(&cave_systems);
     println!("Result of challenge 1: {}",
-             gen_tree(
-                 &cave_systems,
-                 "start",
-                 Vec::new(),
-                 false,
-                 false
-             )
+             tree.gen_tree("start", false, false)
     );
     // part 2
+    let mut tree = Tree::new(&cave_systems);
     println!("Result of challenge 2: {}",
-             gen_tree(
-                 &cave_systems,
-                 "start",
-                 Vec::new(),
-                 true,
-                 true
-             )
+             tree.gen_tree("start", true, true)
     );
 }
