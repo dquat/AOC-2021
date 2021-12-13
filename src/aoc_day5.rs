@@ -98,7 +98,6 @@ pub fn solve() {
     let string =
         fs::read_to_string("src/inputs/aoc-day5-input")
             .expect("Failed to read input file!");
-    let time = std::time::Instant::now();
     // part 1
     let lines = parse_input(&string, false);
     println!("Result of challenge 1: {}", calculate_intersections(&lines));
@@ -106,5 +105,4 @@ pub fn solve() {
     // part 2
     let lines = parse_input(&string, true);
     println!("Result of challenge 2: {}", calculate_intersections(&lines));
-    println!("Time: {:?}", time.elapsed());
 }

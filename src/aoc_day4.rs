@@ -140,7 +140,6 @@ pub fn solve() {
     let string =
         fs::read_to_string("src/inputs/aoc-day4-input")
             .expect("Failed to read input file!");
-    let time = std::time::Instant::now();
     let mut boards = Board::generate_board(string);
     let (win, last_draw) = boards.next_win().unwrap();
     println!("Result of challenge 1: {}", boards.unmarked_value(win) * last_draw);
@@ -151,5 +150,4 @@ pub fn solve() {
         last_board_call = last_called;
     }
     println!("Result of challenge 2: {}", boards.unmarked_value(board) * last_board_call);
-    println!("Time: {:?}", time.elapsed());
 }
