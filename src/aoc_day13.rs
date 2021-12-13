@@ -62,7 +62,7 @@ impl Fold {
 }
 
 fn print_points(points: &[Point], width: usize, height: usize) {
-    use crossterm::{execute, style::{Color, SetForegroundColor, ResetColor}, };
+    use crossterm::{execute, style::{Color, SetForegroundColor, ResetColor},};
     for y in 0..height {
         for x in 0..width {
             // Ooh some cool color effects!
@@ -74,10 +74,10 @@ fn print_points(points: &[Point], width: usize, height: usize) {
                         b: ((y as f64 / height as f64) * 205.0) as u8 + 50,
                     };
                     execute!(std::io::stdout(), SetForegroundColor(color)).unwrap();
-                    print!("██");
+                    print!("\u{2588}\u{2588}"); // ██
                     execute!(std::io::stdout(), ResetColor).unwrap();
                 } else {
-                    print!("██");
+                    print!("\u{2588}\u{2588}"); // ██
                 }
             } else {
                 if COLOR_EFFECTS {
@@ -88,7 +88,7 @@ fn print_points(points: &[Point], width: usize, height: usize) {
                         b: c,
                     };
                     execute!(std::io::stdout(), SetForegroundColor(color)).unwrap();
-                    print!("██");
+                    print!("\u{2588}\u{2588}"); // ██
                     execute!(std::io::stdout(), ResetColor).unwrap();
                 } else {
                     print!("  ");

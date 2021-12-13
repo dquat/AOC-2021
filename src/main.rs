@@ -4,7 +4,7 @@
 #![allow(unused_imports)]
 #![allow(unused_mut)]
 
-extern crate crossterm; // just for my tinkering, it has not been used until now
+extern crate crossterm; // has been used in day 13.
 
 mod  aoc_day1;
 mod  aoc_day2;
