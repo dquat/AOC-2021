@@ -2,7 +2,7 @@ use std::collections::HashSet;
 use std::fs;
 use FoldDirection::*;
 
-const NUM_POINTS    : usize =  782 ; // the number of points in my input is 782, probably the same f
+const NUM_POINTS    : usize =  782 ; // change this as needed for different inputs, mine is 782 lines long
 const NUM_FOLDS     : usize =   12 ; // number of folds in my input is 12, probably the same for others too
 const SKIP_LEN      : usize =   11 ; // length of `fold along ` = 11
 const COLOR_EFFECTS : bool  = true ; // set this to false, if you get unreadable / uncool output from part 2, ie your console does not support rgb colors
